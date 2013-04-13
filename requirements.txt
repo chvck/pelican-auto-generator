@@ -1,3 +1,2 @@
-pyinotify==0.9.3
-requests==0.14.1
-gitpython==0.3.2
+pyinotify==0.9.4
+gitpython==0.3.2.RC1

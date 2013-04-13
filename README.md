@@ -1,4 +1,4 @@
-tvrd
+Pelican-auto-generator
 ====
 
 Install
@@ -6,7 +6,7 @@ Install
 Install into `/opt`:
 
     cd /opt
-    git clone git://github.com/ghickman/tvrd.git
+    git clone git@github.com:chvck/pelican-auto-generator.git
 
 
 Create a virtual env:
@@ -16,19 +16,18 @@ Create a virtual env:
 
 Create a log directory:
 
-    sudo mkdir /var/log/tvrd
-    sudo chown <user>:<group> /var/log/tvrd
+    sudo mkdir /var/log/pag
+    sudo chown <user>:<group> /var/log/pag
 
 
 Create a supervisor config in `/etc/supervisor/conf.d/tvrd.conf`:
 
-    [program:tvrd]
-    command=/opt/tvrd/venv/bin/python /opt/tvrd/main.py <folder to watch>
+    [program:pelican-auto-generator]
+    command=/opt/pelican-auto-generator/venv/bin/python /opt/pelican-auto-generator/main.py <folder to watch> <git folder>
     user=<user>
     autostart=true
     autorestart=true
     redirect_stderr=True
-    environment=DELUGE_PASSWORD='<deluge pass>'
 
 
 Update supervisor:
@@ -36,9 +35,9 @@ Update supervisor:
     sudo supervisorctl update
 
 
-Set up log rotation in `/etc/logrotate.d/tvrd` (with sudo):
+Set up log rotation in `/etc/logrotate.d/pelican-auto-generator` (with sudo):
 
-    /var/log/tvrd/* {
+    /var/log/pag/* {
         missingok
         nocompress
         rotate 5
