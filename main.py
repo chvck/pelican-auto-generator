@@ -11,26 +11,22 @@ from logs import start_logging
 from worker import worker
 
 
-FIREHOSE = '/var/log/tvrd/tvrd.log'
-WEB_LOG = '/var/log/tvrd/web.log'
+FIREHOSE = '/var/log/pag/log.log'
 
 
-log = logging.getLogger('tvrd.main')
-
+log = logging.getLogger('pag.main')
 
 parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument('path')
-parser.add_argument('--debug', dest='debug', action='store_true')
+parser.add_argument('git_path')
 args = parser.parse_args()
 
-
 if __name__ == '__main__':
-    start_logging(FIREHOSE, WEB_LOG, debug=args.debug)
+    start_logging(FIREHOSE, debug=args.debug)
 
     q = Queue.Queue()
 
-    config = os.path.abspath(os.path.join(os.path.dirname(__file__), 'config.yml'))
-    t = threading.Thread(target=worker, args=(q, args.path, config))
+    t = threading.Thread(target=worker, args=(q, args.path, args.git_path))
     t.daemon = True
     t.start()
 
@@ -40,7 +36,6 @@ if __name__ == '__main__':
     notifier = Notifier(watch_manager, handler)
 
     # watch this directory, with mask(s)
-    # TODO: Consider IN_MOVED_TO. Deluge doesn't use it but would I?
     wdd = watch_manager.add_watch(args.path, IN_MOVED_TO, rec=True, auto_add=True)
 
     # setup options
