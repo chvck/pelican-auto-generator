@@ -15,7 +15,8 @@ to be created on the commit action (I'm hoping to extend this to work with other
 
 Install
 -------
-Ensure that your blog project is a git repository:
+Ensure that your blog project is a git repository
+
 Create a commit hook to push up to whatever host service you use
 
 Install into `/opt`:
