@@ -29,6 +29,14 @@ Create a virtual env:
 
     virtualenv --distribute venv
 
+Activate the virtual env
+
+    source venv/bin/activate
+    
+Install dependencies
+
+    pip install -r requirements.txt
+
 
 Create a log directory:
 
@@ -36,7 +44,7 @@ Create a log directory:
     sudo chown <user>:<group> /var/log/pag
 
 
-Create a supervisor config in `/etc/supervisor/conf.d/tvrd.conf`:
+Create a supervisor config in `/etc/supervisor/conf.d/pelican-auto-generator.conf`:
 
     [program:pelican-auto-generator]
     command=/opt/pelican-auto-generator/venv/bin/python /opt/pelican-auto-generator/main.py <folder to watch> <git folder>
