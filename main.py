@@ -19,6 +19,7 @@ log = logging.getLogger('pag.main')
 parser = argparse.ArgumentParser(description='Process some integers.')
 parser.add_argument('path')
 parser.add_argument('git_path')
+parser.add_argument('--debug', dest='debug', action='store_true')
 args = parser.parse_args()
 
 if __name__ == '__main__':

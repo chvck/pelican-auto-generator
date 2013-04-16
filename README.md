@@ -10,20 +10,21 @@ pelican source directory (other solutions than dropbox should work just fine, so
 sees it as a folder then all is good). I wanted a way where I could write a post on my phone, stick it
 in dropbox and see it a few minutes later on my blog - that's what this tool does.
 
-At present the tool only supports publishing to things that use git push. The tool also requires a git hook
-to be created on the commit action (I'm hoping to extend this to work with other things via a config file).
+At present the tool only supports publishing to things that use git push as a deployment mechanism.
+
+Todo
+-----
+
+Make the call to pelican to generate and then do the push, hooks don't seem to work...
 
 Install
 -------
-Ensure that your blog project is a git repository
-
-Create a commit hook to push up to whatever host service you use
+Ensure that your blog project is a git repository and that you have ghp-import
 
 Install into `/opt`:
 
     cd /opt
     git clone git@github.com:chvck/pelican-auto-generator.git
-
 
 Create a virtual env:
 
